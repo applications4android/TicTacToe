@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.blogspot.applications4android.ttt.test"
+    package="com.blogspot.applications4android.tictactoe.test"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -9,7 +9,7 @@
 
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
-        android:targetPackage="com.blogspot.applications4android.ttt" />
+        android:targetPackage="com.blogspot.applications4android.tictactoe" />
 
     <application
         android:icon="@drawable/icon"

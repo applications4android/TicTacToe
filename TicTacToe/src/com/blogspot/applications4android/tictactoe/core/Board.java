@@ -1,4 +1,4 @@
-package com.blogspot.applications4android.ttt.core;
+package com.blogspot.applications4android.tictactoe.core;
 
 
 /**

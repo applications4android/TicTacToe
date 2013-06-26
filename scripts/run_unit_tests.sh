@@ -64,7 +64,7 @@ function compileAndInstall() {
 
 
 
-package=com.blogspot.applications4android.ttt.test
+package=com.blogspot.applications4android.tictactoe.test
 inst=android.test.InstrumentationTestRunner
 cleanProjects=0
 build=1

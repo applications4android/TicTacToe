@@ -1,4 +1,6 @@
-package com.blogspot.applications4android.ttt;
+package com.blogspot.applications4android.tictactoe;
+
+import com.blogspot.applications4android.tictactoe.R;
 
 import android.app.Activity;
 import android.os.Bundle;
