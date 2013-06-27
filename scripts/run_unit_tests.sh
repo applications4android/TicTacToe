@@ -17,9 +17,6 @@
 #                      assumes that there's already an emulator (and one and only
 #                      one!) running.
 #
-# PRE-REQS:
-#  . Needs an emulator to be running already
-#
 #END
 
 
@@ -46,10 +43,18 @@ function runCmd() {
     fi
 }
 
-function compileAndInstall() {
+function emulatorRunning() {
+    local ff=`adb devices | grep 'emulator-5554' | awk '{print $1}'`
+    if [ "$ff" = "" ]; then
+        echo 0
+    else
+        echo 1
+    fi
+}
+
+function compile() {
     local dir=$1
     local clean=$2
-    local apk="$dir/bin/$dir-debug.apk"
     local buildfile="$dir/build.xml"
     if [ ! -e "$buildfile" ]; then
         fatalError "The buildfile '$buildfile' does not exist!"
@@ -58,17 +63,15 @@ function compileAndInstall() {
         runCmd "ant -buildfile $buildfile clean"
     fi
     runCmd "ant -buildfile $buildfile debug"
-    runCmd "adb -e install -r $apk"
 }
 
 
 
 
-package=com.blogspot.applications4android.tictactoe.test
-inst=android.test.InstrumentationTestRunner
 cleanProjects=0
 build=1
 avd=
+alreadyRunning=`emulatorRunning`
 
 while [ "$1" != "" ]; do
     case "$1" in
@@ -89,13 +92,14 @@ while [ "$1" != "" ]; do
     esac
 done
 
-if [ "$avd" != "" ]; then
+if [ "$avd" != "" ] && [ "$alreadyRunning" = "0" ]; then
     runCmd "emulator -avd $avd"
 fi
 runCmd "adb start-server"
 runCmd "adb wait-for-device"
 if [ "$build" = "1" ]; then
-    compileAndInstall "TicTacToe" $cleanProjects
-    compileAndInstall "TicTacToeTest" $cleanProjects
+    compile "TicTacToe" $cleanProjects
+    compile "TicTacToeTest" $cleanProjects
 fi
-runCmd "adb -e shell am instrument -w ${package}/${inst}"
+testBuildFile="TicTacToeTest/build.xml"
+runCmd "ant -buildfile $testBuildFile test"

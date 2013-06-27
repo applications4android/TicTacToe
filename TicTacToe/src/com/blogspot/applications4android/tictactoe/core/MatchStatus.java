@@ -1,9 +1,7 @@
 package com.blogspot.applications4android.tictactoe.core;
 
 
-/**
- * Enum representing the status of the current match
- */
+/** Enum representing the status of the current match */
 public enum MatchStatus {
     /** current player has won the match */
     COMPLETED,
