@@ -52,9 +52,10 @@ function emulatorRunning() {
     fi
 }
 
-function compile() {
+function compileAndInstall() {
     local dir=$1
     local clean=$2
+    local apk="$dir/bin/$dir-debug.apk"
     local buildfile="$dir/build.xml"
     if [ ! -e "$buildfile" ]; then
         fatalError "The buildfile '$buildfile' does not exist!"
@@ -63,6 +64,8 @@ function compile() {
         runCmd "ant -buildfile $buildfile clean"
     fi
     runCmd "ant -buildfile $buildfile debug"
+    runCmd "adb wait-for-device"
+    runCmd "adb install -r $apk"
 }
 
 
@@ -96,10 +99,9 @@ if [ "$avd" != "" ] && [ "$alreadyRunning" = "0" ]; then
     runCmd "emulator -avd $avd"
 fi
 runCmd "adb start-server"
-runCmd "adb wait-for-device"
 if [ "$build" = "1" ]; then
-    compile "TicTacToe" $cleanProjects
-    compile "TicTacToeTest" $cleanProjects
+    compileAndInstall "TicTacToe" $cleanProjects
+    compileAndInstall "TicTacToeTest" $cleanProjects
 fi
 testBuildFile="TicTacToeTest/build.xml"
 runCmd "ant -buildfile $testBuildFile test"

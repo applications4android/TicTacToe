@@ -20,4 +20,11 @@ public class PlayerEnumTest extends TestCase {
         pl = PlayerEnum.PLAYER_O;
         assertEquals(Marking.MARK_O, pl.getMarking());
     }
+
+    public void testToString() {
+        PlayerEnum pl = PlayerEnum.PLAYER_O;
+        assertEquals("PLAYER_O", pl.toString());
+        pl = PlayerEnum.PLAYER_X;
+        assertEquals("PLAYER_X", pl.toString());
+    }
 }
