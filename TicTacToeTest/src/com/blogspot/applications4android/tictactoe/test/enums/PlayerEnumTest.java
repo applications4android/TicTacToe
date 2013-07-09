@@ -1,7 +1,7 @@
-package com.blogspot.applications4android.tictactoe.test.core;
+package com.blogspot.applications4android.tictactoe.test.enums;
 
-import com.blogspot.applications4android.tictactoe.core.Marking;
-import com.blogspot.applications4android.tictactoe.core.PlayerEnum;
+import com.blogspot.applications4android.tictactoe.enums.Marking;
+import com.blogspot.applications4android.tictactoe.enums.PlayerEnum;
 
 import junit.framework.TestCase;
 

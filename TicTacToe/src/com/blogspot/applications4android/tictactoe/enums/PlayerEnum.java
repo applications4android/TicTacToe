@@ -1,4 +1,5 @@
-package com.blogspot.applications4android.tictactoe.core;
+package com.blogspot.applications4android.tictactoe.enums;
+
 
 /** Enum representing the types of players (X and O) */
 public enum PlayerEnum {

@@ -1,6 +1,6 @@
-package com.blogspot.applications4android.tictactoe.test.core;
+package com.blogspot.applications4android.tictactoe.test.enums;
 
-import com.blogspot.applications4android.tictactoe.core.MatchStatus;
+import com.blogspot.applications4android.tictactoe.enums.MatchStatus;
 
 import junit.framework.TestCase;
 

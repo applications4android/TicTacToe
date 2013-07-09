@@ -1,19 +1,21 @@
 package com.blogspot.applications4android.tictactoe.test.core;
 
-import com.blogspot.applications4android.tictactoe.core.PlayerEnum;
-import com.blogspot.applications4android.tictactoe.core.PlayerNames;
+import com.blogspot.applications4android.tictactoe.core.Player;
+import com.blogspot.applications4android.tictactoe.core.Players;
+import com.blogspot.applications4android.tictactoe.enums.PlayerEnum;
+import com.blogspot.applications4android.tictactoe.enums.PlayerType;
 import com.blogspot.applications4android.tictactoe.exceptions.PlayerException;
 
 import junit.framework.TestCase;
 
 
-public class PlayerNamesTest extends TestCase {
+public class PlayersTest extends TestCase {
     public void testAddPlayer() {
         PlayerException pe = null;
         boolean firstAdd = false;
-        PlayerNames names = new PlayerNames();
+        Players names = new Players();
         try {
-            names.addPlayer(PlayerEnum.PLAYER_O, "name");
+            names.addPlayer(PlayerEnum.PLAYER_O, "name", PlayerType.HUMAN);
             firstAdd = true;
         }
         catch(PlayerException e) {
@@ -26,11 +28,11 @@ public class PlayerNamesTest extends TestCase {
     public void testBadAddPlayer() {
         PlayerException pe = null;
         boolean firstAdd = false;
-        PlayerNames names = new PlayerNames();
+        Players names = new Players();
         try {
-            names.addPlayer(PlayerEnum.PLAYER_O, "name");
+            names.addPlayer(PlayerEnum.PLAYER_O, "name", PlayerType.COMPUTER);
             firstAdd = true;
-            names.addPlayer(PlayerEnum.PLAYER_O, "name1");
+            names.addPlayer(PlayerEnum.PLAYER_O, "name1", PlayerType.HUMAN);
         }
         catch(PlayerException e) {
             pe = e;
@@ -40,17 +42,19 @@ public class PlayerNamesTest extends TestCase {
     }
 
     public void testGetPlayerName() {
-        PlayerNames names = new PlayerNames();
+        Players names = new Players();
         try {
-            names.addPlayer(PlayerEnum.PLAYER_O, "PlayerO");
-            names.addPlayer(PlayerEnum.PLAYER_X, "PlayerX");
+            names.addPlayer(PlayerEnum.PLAYER_O, "PlayerO", PlayerType.HUMAN);
+            names.addPlayer(PlayerEnum.PLAYER_X, "PlayerX", PlayerType.HUMAN);
         }
         catch(Throwable t) {
             assertTrue(false);
         }
         try {
-            assertEquals("PlayerO", names.getPlayerName(PlayerEnum.PLAYER_O));
-            assertEquals("PlayerX", names.getPlayerName(PlayerEnum.PLAYER_X));
+            Player p = names.getPlayer(PlayerEnum.PLAYER_O);
+            assertEquals("PlayerO", p.name());
+            p = names.getPlayer(PlayerEnum.PLAYER_X);
+            assertEquals("PlayerX", p.name());
         }
         catch(Throwable t) {
             assertTrue(false);
@@ -58,10 +62,10 @@ public class PlayerNamesTest extends TestCase {
     }
 
     public void testBadGetPlayerName() {
-        PlayerNames names = new PlayerNames();
+        Players names = new Players();
         PlayerException pe = null;
         try {
-            names.getPlayerName(PlayerEnum.PLAYER_O);
+            names.getPlayer(PlayerEnum.PLAYER_O);
         }
         catch(PlayerException e) {
             pe = e;
@@ -69,7 +73,7 @@ public class PlayerNamesTest extends TestCase {
         assertNotNull(pe);
         pe = null;
         try {
-            names.getPlayerName(PlayerEnum.PLAYER_X);
+            names.getPlayer(PlayerEnum.PLAYER_X);
         }
         catch(PlayerException e) {
             pe = e;

@@ -2,7 +2,7 @@ package com.blogspot.applications4android.tictactoe.test.core;
 
 import com.blogspot.applications4android.tictactoe.core.Move;
 import com.blogspot.applications4android.tictactoe.core.Moves;
-import com.blogspot.applications4android.tictactoe.core.PlayerEnum;
+import com.blogspot.applications4android.tictactoe.enums.PlayerEnum;
 
 import junit.framework.TestCase;
 

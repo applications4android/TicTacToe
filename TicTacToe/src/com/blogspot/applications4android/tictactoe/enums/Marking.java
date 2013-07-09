@@ -1,4 +1,4 @@
-package com.blogspot.applications4android.tictactoe.core;
+package com.blogspot.applications4android.tictactoe.enums;
 
 /** Enum representing the types of markings (X, O and none) */
 public enum Marking {

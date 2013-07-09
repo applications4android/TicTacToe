@@ -1,5 +1,6 @@
 package com.blogspot.applications4android.tictactoe.core;
 
+import com.blogspot.applications4android.tictactoe.enums.PlayerEnum;
 import com.blogspot.applications4android.tictactoe.exceptions.BadStringException;
 
 /** Data structure representing a move made by a player in the game */
